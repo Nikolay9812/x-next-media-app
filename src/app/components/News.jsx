@@ -13,7 +13,7 @@ export default function News() {
         setNews(data.articles);
       })
       .catch((error) => console.error("Error fetching news:", error));
-  }, []); // Add an empty dependency array to run the effect only once
+  }, []);
 
   return (
     <div className="text-gray-700 space-y-3 bg-gray-100 rounded-xl pt-2">
