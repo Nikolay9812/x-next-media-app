@@ -11,7 +11,6 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import {
-  Timestamp,
   addDoc,
   collection,
   getFirestore,
@@ -86,6 +85,7 @@ export default function Input() {
     setText("");
     setImgFileUrl(null);
     setSelectedFile(null);
+    location.reload()
   };
 
   if (!session) return null;

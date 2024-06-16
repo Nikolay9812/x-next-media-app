@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "./components/Input";
+import Feed from "./components/Feed";
 
 export default function page() {
   return (
@@ -8,6 +9,7 @@ export default function page() {
         <h1 className="text-lg sm:text-xl font-bold">Home</h1>
       </div>
       <Input />
+      <Feed/>
     </div>
   );
 }
