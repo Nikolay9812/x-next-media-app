@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { HiOutlinePhotograph } from "react-icons/hi";
-import { app } from "../app/firebase";
+import { app } from "../firebase";
 import {
   getStorage,
   ref,
