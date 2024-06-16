@@ -27,6 +27,7 @@ export default function Icons({ id, uid }) {
   const [likes, setLikes] = useState([]);
   const [open, setOpen] = useRecoilState(modalState);
   const [postId, setPostId] = useRecoilState(postIdState);
+  const [comments,setComments]=useState([])
 
   const likePost = async () => {
     if (session) {
@@ -55,6 +56,16 @@ export default function Icons({ id, uid }) {
     );
   }, [likes]);
 
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      collection(db, "posts", id, "comments"),
+      (snapshot) => {
+        setComments(snapshot.docs);
+      }
+    );
+    return () => unsubscribe();
+  }, [db, id]);
+
   const deletePost = async () => {
     if (window.confirm("Are you want to delete this post?")) {
       if (session?.user?.uid === uid) {
@@ -74,6 +85,7 @@ export default function Icons({ id, uid }) {
 
   return (
     <div className="flex justify-start gap-5 p-2 text-gray-500">
+      <div className="flex items-center">
       <HiOutlineChat
         onClick={() => {
           if (!session) {
@@ -83,13 +95,21 @@ export default function Icons({ id, uid }) {
             setPostId(id);
           }
         }}
-        className="h-8 w-8 cursor-pointer rounded-full transition text-red-500 duration-500 ease-in-out p-2 hover:text-sky-500 hover:bg-sky-100"
-      />
+        className="h-8 w-8 cursor-pointer rounded-full transition text-gray-500 duration-500 ease-in-out p-2 hover:text-sky-500 hover:bg-sky-100"
+        />
+        {
+          comments.length > 0 && (
+            <span className="text-xs" >
+            {comments.length}
+          </span>
+          )
+        }
+      </div>
       <div className="flex items-center">
         {isLiked ? (
           <HiHeart
             onClick={likePost}
-            className="h-8 w-8 cursor-pointer rounded-full transition duration-500 ease-in-out p-2 hover:text-red-500 hover:bg-red-100"
+            className="h-8 w-8 text-red-500 cursor-pointer rounded-full transition duration-500 ease-in-out p-2 hover:text-red-500 hover:bg-red-100"
           />
         ) : (
           <HiOutlineHeart
