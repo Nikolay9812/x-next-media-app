@@ -76,6 +76,7 @@ export default function CommentModal() {
               <div className="w-full divide-y divide-gray-200">
                 <div>
                   <textarea
+                    id="post-input"
                     className="w-full border-none outline-none tracking-wide min-h-[50px] text-gray-700 placeholder:text-gray-500"
                     placeholder="Whats happening?"
                     rows="2"
