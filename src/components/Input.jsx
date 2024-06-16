@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { HiOutlinePhotograph } from "react-icons/hi";
-import { app } from "../firebase";
+import { app } from "../app/firebase";
 import {
   getStorage,
   ref,
@@ -85,7 +85,7 @@ export default function Input() {
     setText("");
     setImgFileUrl(null);
     setSelectedFile(null);
-    location.reload()
+    location.reload();
   };
 
   if (!session) return null;
